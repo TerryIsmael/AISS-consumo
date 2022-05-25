@@ -1,0 +1,31 @@
+@CHARSET "ISO-8859-1";
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+
+#searchDiv {
+	text-align: center;
+}
+
+fieldset {
+	border: 1px solid gray;
+	width:30%;
+	margin-right:1%;
+	float:left;
+}
+
+legend {
+	padding: 0.2em 0.5em;
+	border: 1px solid gray;
+	font-size: 90%;
+	text-align: right;
+}
+
+#flickr img {
+	max-width: 95%;
+}
