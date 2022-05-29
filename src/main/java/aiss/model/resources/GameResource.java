@@ -11,7 +11,7 @@ import aiss.model.game.Game;
 
 public class GameResource {
 	
-	Predicate<String> isNull = v->v==null || v.equals("") ;
+	Predicate<String> isNull = v->v==null || v.equals("");
 	String uri = "https://indigo-computer-349516.ew.r.appspot.com/api/games";
 	public Game[] getGames (String order, String order2, String q, Integer limit, Integer offset) throws UnsupportedEncodingException {
 		String orderE = null;
@@ -22,14 +22,12 @@ public class GameResource {
 		if(!isNull.test(order2)) {
 			order2E=URLEncoder.encode(order2,"UTF-8");
 		}
-		
-		String URI = "https://indigo-computer-349516.ew.r.appspot.com/api/games?" + (!isNull.test(order)?("order="+orderE+"&"):"") +
+		String URI = "https://indigo-computer-349516.ew.r.appspot.com/api/games?" + (!isNull.test(order)?("order="+orderE+"&"):"") + (!isNull.test(q)?("q="+q+"&"):"") +
 				(!isNull.test(order2)?("order2="+order2E+"&"):"") + (limit!=null?("limit="+limit+"&"):"") + (offset!=null?("offset="+offset):"") ;
-		
+		System.out.println(URI);
 		ClientResource cr = new ClientResource(URI);
 		System.out.println(URI);
 		Game[] games = cr.get(Game[].class);
-		
 		return games;
 	}
 	public Game getGame (String id) {
@@ -37,7 +35,6 @@ public class GameResource {
 		Game game = null;
 		try {
 			cr = new ClientResource(uri +"/" + id);
-			
 			game = cr.get(Game.class);
 		} catch (ResourceException e){
 			System.err.println("Error when getting a game " + cr.getResponse().getStatus());
@@ -45,6 +42,7 @@ public class GameResource {
 		}
 		return game;
 	}
+	
 	public boolean deleteGame(String gameId) {
 		ClientResource cr = null;
 		Boolean success = true;
@@ -58,4 +56,18 @@ public class GameResource {
 		}
 		return success;
 	}
+	
+	public boolean createGame (Game g) {
+        ClientResource cr = new ClientResource(uri);
+        boolean success = true;
+        try {
+			cr= new ClientResource(uri);
+			cr.setEntityBuffering(true);
+			 cr.post(g,Game.class);
+		} catch (ResourceException e) {
+			System.err.println("Error when deleting a game " + cr.getResponse().getStatus());
+			success=false;
+		}
+		return success;
+    }
 }

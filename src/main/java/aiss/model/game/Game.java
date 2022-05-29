@@ -111,12 +111,11 @@ public class Game {
 	}
     @JsonCreator
 	public Game(@JsonProperty("console") List<String> console,
-			@JsonProperty("name") String name,@JsonProperty("review") String review, 
+			@JsonProperty("name") String name, 
 			@JsonProperty("score") Integer score) {
 		super();
 		this.console = console;
 		this.name = name;
-		this.review = review;
 		this.score = score;
 	}
     
