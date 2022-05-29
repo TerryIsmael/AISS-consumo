@@ -45,32 +45,6 @@ public class GameResource {
 		}
 		return game;
 	}
-	public Game addGame(Game game) {
-		ClientResource cr = null;
-		Game result = null;
-		try {
-			cr = new ClientResource(uri);
-			cr.setEntityBuffering(true);
-			result = cr.post(game, Game.class);
-		} catch (ResourceException e) {
-			System.err.println("Error when adding a game " + cr.getResponse().getStatus());
-			throw e;
-		}
-		return result;
-	}
-	public boolean updateGame(Game game) {
-		ClientResource cr = null;
-		Boolean success = true;
-		try {
-			cr = new ClientResource(uri);
-			cr.setEntityBuffering(true);
-			cr.put(game);
-		} catch (ResourceException e) {
-			System.err.println("Error when updating a game " + cr.getResponse().getStatus());
-			success = false;
-		}
-		return success;
-	}
 	public boolean deleteGame(String gameId) {
 		ClientResource cr = null;
 		Boolean success = true;

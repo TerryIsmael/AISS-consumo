@@ -108,7 +108,6 @@ public class Game {
 		this.name = name;
 		this.review = review;
 		this.score = score;
-		this.additionalProperties = new HashMap<>();
 	}
     @JsonCreator
 	public Game(@JsonProperty("console") List<String> console,
@@ -119,7 +118,6 @@ public class Game {
 		this.name = name;
 		this.review = review;
 		this.score = score;
-		this.additionalProperties = new HashMap<>();
 	}
     
 }
