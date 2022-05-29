@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
+
+import org.codehaus.jackson.annotate.JsonCreator;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -95,5 +98,28 @@ public class Game {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-
+    @JsonCreator
+	public Game(@JsonProperty("id") String id, @JsonProperty("console") List<String> console,
+			@JsonProperty("name") String name,@JsonProperty("review") String review, 
+			@JsonProperty("score") Integer score) {
+		super();
+		this.id = id;
+		this.console = console;
+		this.name = name;
+		this.review = review;
+		this.score = score;
+		this.additionalProperties = new HashMap<>();
+	}
+    @JsonCreator
+	public Game(@JsonProperty("console") List<String> console,
+			@JsonProperty("name") String name,@JsonProperty("review") String review, 
+			@JsonProperty("score") Integer score) {
+		super();
+		this.console = console;
+		this.name = name;
+		this.review = review;
+		this.score = score;
+		this.additionalProperties = new HashMap<>();
+	}
+    
 }
